@@ -21,10 +21,6 @@ RUN pip install --upgrade virtualenv
 RUN pip install numpy
 RUN pip install PyVCF
 
-RUN wget -qO /home/user/bin/bowtie2-2.2.9-linux-x86_64.zip \ 
-    https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.9/bowtie2-2.2.9-linux-x86_64.zip/download \
-    && unzip -d /home/user/bin/bowtie2-2.2.9 /home/user/bin/bowtie2-2.2.9-linux-x86_64.zip \
-    && rm /home/user/bin/bowtie2-2.2.9-linux-x86_64.zip \
-    && find /home/user/bin/bowtie2-2.2.9 -perm /a+x -type f -exec mv {} /usr/local/bin \; \
-    && rm -rf -- /home/user/bin/bowtie2-2.2.9
-    
+RUN wget https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.9/bowtie2-2.2.9-linux-x86_64.zip/download \
+    && unzip bowtie2-2.2.9-linux-x86_64.zip
+    && find bowtie2-2.2.9 -perm /a+x -type f -exec mv {} /usr/local/bin \
