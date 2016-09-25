@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade virtualenv
-RUN pip install numpy
-RUN pip install PyVCF
+
+#install github
 
 ENV APP_NAME=bowtie2
 ENV VERSION=v2.2.9
@@ -37,3 +37,14 @@ RUN git clone $GIT ; \
     cd ../ ;  \
     mkdir -p $DEST ; \
     mv $APP_NAME $DEST/$VERSION
+    
+# install chimerscan
+
+RUN pip install pysam
+
+RUN git clone https://github.com/cgrlab/chimerascan.git && \
+    cd chimerascan ; \
+    python setup.py build ; \
+    python setup.py install
+      
+
